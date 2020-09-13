@@ -1,7 +1,7 @@
 import { Map, List } from "immutable";
+import baseStore from "../core/baseStore";
 import AppDispatcher from "../dispatchers/AppDispatcher";
 import ActionTypes from "../constants/CarsConstants";
-import baseStore from "../core/baseStore";
 
 // const CHANGE_EVENT = "change";
 
@@ -123,18 +123,23 @@ const storeActions = (store) => {
       case ActionTypes.CREATE_CAR:
         store.createCar(action.data);
         break;
+
       case ActionTypes.UPDATE_CAR:
         store.updateCar(action.data);
         break;
+
       case ActionTypes.DELETE_CAR:
         store.deleteCar(action.data.id);
         break;
+
       case ActionTypes.ADD_CAR_TO_COMPARE_LIST:
         store.addCarToCompareList();
         break;
+
       case ActionTypes.DELETE_CAR_FROM_COMPARE_LIST:
         store.deleteCarFromCompareList();
         break;
+
       default:
         return;
     }

@@ -22,7 +22,6 @@ export const deleteCarFromCompareList = (carId) => {
 };
 
 export const addCarToCompareList = (car) => {
-  console.log(car);
   dispatch({
     actionType: AppConstants.ADD_CAR_TO_COMPARE_LIST,
     car,

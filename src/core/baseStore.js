@@ -3,10 +3,6 @@ import { EventEmitter } from "events";
 const CHANGE_EVENT = "change";
 
 class Store extends EventEmitter {
-  constructor() {
-    super();
-  }
-
   emitChange() {
     this.emit(CHANGE_EVENT);
   }

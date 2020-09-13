@@ -7,7 +7,6 @@ export function register(callback) {
 }
 
 export function dispatch(actionType, action) {
-  console.log(actionType);
   dispatcher.dispatch(actionType, action);
 }
 

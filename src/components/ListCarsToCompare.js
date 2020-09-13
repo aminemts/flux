@@ -25,14 +25,18 @@ class ListCarsToCompare extends Component {
     return (
       <div>
         <h2>Liste des voitures à comparer</h2>
-        <ul>
-          {this.state.listCarsToCompare.map((car) => (
-            <li key={car.id}>
-              <h1>{car.marque}</h1>
-              <button onClick={() => handleDelete(car.id)}>Retirer</button>
-            </li>
-          ))}
-        </ul>
+        <div className="card m-4">
+          <ul>
+            {this.state.listCarsToCompare.map((car) => (
+              <li key={car.id}>
+                <h1>{car.marque}</h1>
+                <button onClick={() => handleDelete(car.id)}>Retirer</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <button className="btn btn-warning">Comparer</button>
       </div>
     );
   }
