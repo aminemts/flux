@@ -2,14 +2,12 @@ import AppConstants from "../constants/CarsConstants";
 import { dispatch } from "../dispatchers/AppDispatcher";
 import cars from "../components/cars";
 import axios from "axios";
-
 const axiosInstance = axios.create({
   baseURL: "http://localhost:3001",
   headers: {
     "Content-type": "application/json",
   },
 });
-
 export const createCar = (item) => {
   dispatch({
     actionType: AppConstants.CREATE_CAR,
@@ -22,20 +20,17 @@ export const updateCar = (item) => {
     data: item,
   });
 };
-
 export const deleteCarFromCompareList = (carId) => {
   dispatch({
     actionType: AppConstants.DELETE_CAR_FROM_COMPARE_LIST,
     data: carId,
   });
 };
-
 export const deleteCarsFromCompareList = () => {
   dispatch({
     actionType: AppConstants.DELETE_CARS_FROM_COMPARE_LIST,
   });
 };
-
 export const addCarToCompareList = (car) => {
   console.log("from dispatcher", { car });
   dispatch({
@@ -43,14 +38,14 @@ export const addCarToCompareList = (car) => {
     data: car,
   });
 };
-
 export const initCars = async () => {
   //get data from axios
-  const cars = await axiosInstance
+  const result = await axiosInstance
     .get("/")
-    .catch((error) => console.log(error));
+    .catch((error) => console.log("dsd"));
+  console.log({ result });
   dispatch({
     actionType: AppConstants.INIT_CARS,
-    data: cars,
+    data: result.data,
   });
 };

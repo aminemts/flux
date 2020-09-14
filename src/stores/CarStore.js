@@ -2,11 +2,8 @@ import { Map, List } from "immutable";
 import baseStore from "../core/baseStore";
 import AppDispatcher from "../dispatchers/AppDispatcher";
 import ActionTypes from "../constants/CarsConstants";
-
 // const CHANGE_EVENT = "change";
-
 let _cars = [];
-
 for (let i = 1; i < 10; i++) {
   _cars.push({
     id: i,
@@ -14,15 +11,13 @@ for (let i = 1; i < 10; i++) {
     description: "a great car to drive",
   });
 }
-
 class CarStore extends baseStore {
   // eslint-disable-next-line no-useless-constructor
   constructor() {
     super();
-    this.cars = new List(_cars);
+    this.cars = new List();
     this.listCarsToCompare = new List();
   }
-
   /**
    * initialiser les produits qu'on va sauvegarder dans le store sous forme de map (immutable)
    * ou chaque produit sera indexé par une clé unique (id du produit)
@@ -31,15 +26,12 @@ class CarStore extends baseStore {
    * on obtient une nouvelle copie
    *
    */
-
   getListCarsToCompare() {
     return this.listCarsToCompare;
   }
-
   getAllCars() {
     return this.cars;
   }
-
   /**
    * le store connait bien ces données et connait bien comment y acceder,
    * lorsque le composant React aura besoin d'un produit grace à son id il va lui demander
@@ -52,7 +44,6 @@ class CarStore extends baseStore {
     }
     return car;
   }
-
   /**
    * on met à jour un produit et on notifie le composant React abonné aux changements
    */
@@ -60,7 +51,6 @@ class CarStore extends baseStore {
     this.cars = this.cars.set(car.id, car);
     this.emitChange();
   }
-
   /**
    * un produit a ete cré, on l'ajoute au Map
    * et on notifie le composant React abonné aux changements
@@ -74,10 +64,10 @@ class CarStore extends baseStore {
    * processus d'initialisation
    */
   setCarsInStore(cars) {
-    this.cars = cars;
+    console.log("store", { cars });
+    this.cars = new List(cars);
     this.emitChange();
   }
-
   /**
    * on supprime un produit et on notifie le
    * composant React abonné aux changements
@@ -86,39 +76,33 @@ class CarStore extends baseStore {
     this.cars = this.cars.splice(id, 1);
     this.emitChange();
   }
-
   addCarToCompareList(car) {
     if (this.listCarsToCompare.map((car) => car.id).includes(car.id)) return;
     this.listCarsToCompare = this.listCarsToCompare.push(car);
     console.log("add car", { listCarsToCompare: this.listCarsToCompare });
     this.emitChange();
   }
-
   deleteCarFromCompareList(carId) {
     this.listCarsToCompare = this.listCarsToCompare.filter(
       ({ id }) => id !== carId
     );
     this.emitChange();
   }
-
   deleteCarsFromCompareList() {
     console.log("executed");
     this.listCarsToCompare = new List();
     this.emitChange();
   }
-
   initCars() {
     console.log("executed");
   }
 }
-
 /**
  * on analyse le type de l'action dispatch dans l'application
  * si le store est concerné dans son switch il traite cette action
  * on rentre dedans pour executer l'une de ses methodes
  * evoqué dessus dans le code (create, update, delete)
  */
-
 const storeActions = (store) => {
   return (action) => {
     console.log("from reducer", { action });
@@ -126,39 +110,29 @@ const storeActions = (store) => {
       case ActionTypes.INIT_CARS:
         store.setCarsInStore(action.data);
         break;
-
       case ActionTypes.CREATE_CAR:
         store.createCar(action.data);
         break;
-
       case ActionTypes.UPDATE_CAR:
         store.updateCar(action.data);
         break;
-
       case ActionTypes.DELETE_CAR:
         store.deleteCar(action.data.id);
         break;
-
       case ActionTypes.ADD_CAR_TO_COMPARE_LIST:
         store.addCarToCompareList(action.data);
         break;
-
       case ActionTypes.DELETE_CAR_FROM_COMPARE_LIST:
         store.deleteCarFromCompareList(action.data);
         break;
-
       case ActionTypes.DELETE_CARS_FROM_COMPARE_LIST:
         store.deleteCarsFromCompareList();
         break;
-
       default:
         return;
     }
   };
 };
-
 const carStore = new CarStore();
-
 carStore.dispatchToken = AppDispatcher.register(storeActions(carStore));
-
 export default carStore;
