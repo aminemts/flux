@@ -8,7 +8,7 @@ const handleDeleteAll = () => {
   deleteCarsFromCompareList();
 };
 
-export default class ComparePage extends Component {
+class ComparePage extends Component {
   state = {
     listCarsToCompare: CarStore.getListCarsToCompare(),
   };
@@ -49,7 +49,7 @@ export default class ComparePage extends Component {
           <Link to="/">
             <button
               className="btn btn-warning btn-block"
-              onClick={this.handleDeleteAll}
+              onClick={handleDeleteAll}
             >
               faire nouvelle comparaison
             </button>
@@ -59,3 +59,5 @@ export default class ComparePage extends Component {
     );
   }
 }
+
+export default ComparePage;

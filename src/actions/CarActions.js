@@ -1,5 +1,14 @@
 import AppConstants from "../constants/CarsConstants";
 import { dispatch } from "../dispatchers/AppDispatcher";
+import cars from "../components/cars";
+import axios from "axios";
+
+const axiosInstance = axios.create({
+  baseURL: "http://localhost:3001",
+  headers: {
+    "Content-type": "application/json",
+  },
+});
 
 export const createCar = (item) => {
   dispatch({
@@ -32,5 +41,16 @@ export const addCarToCompareList = (car) => {
   dispatch({
     actionType: AppConstants.ADD_CAR_TO_COMPARE_LIST,
     data: car,
+  });
+};
+
+export const initCars = async () => {
+  //get data from axios
+  const cars = await axiosInstance
+    .get("/")
+    .catch((error) => console.log(error));
+  dispatch({
+    actionType: AppConstants.INIT_CARS,
+    data: cars,
   });
 };

@@ -1,27 +1,18 @@
 {
   "1": {
-    "model": "mercedes",
-    "reference": "class c",
-    "color": "blue"
+    "marque": "mercedes",
+    "description": "class c"
   },
   "2": {
-    "model": "bmw",
-    "reference": "serie 1",
-    "color": "black"
+    "marque": "bmw",
+    "description": "serie 1"
   },
   "3": {
-    "model": "audi",
-    "reference": "a5",
-    "color": "green"
+    "marque": "audi",
+    "description": "a5"
   },
   "4": {
-    "model": "peugeot",
-    "reference": "208",
-    "color": "white"
-  },
-  "5": {
-    "model": "renaut",
-    "reference": "civic",
-    "color": "red"
+    "marque": "peugeot",
+    "description": "208"
   }
 }

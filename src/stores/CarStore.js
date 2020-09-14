@@ -74,12 +74,7 @@ class CarStore extends baseStore {
    * processus d'initialisation
    */
   setCarsInStore(cars) {
-    // this.cars = Map(
-    //     cars.reduce((prev, car) => {
-    //         prev[car.id] = car;
-    //         return prev,
-    //     }, {})
-    // );
+    this.cars = cars;
     this.emitChange();
   }
 
@@ -110,6 +105,10 @@ class CarStore extends baseStore {
     console.log("executed");
     this.listCarsToCompare = new List();
     this.emitChange();
+  }
+
+  initCars() {
+    console.log("executed");
   }
 }
 

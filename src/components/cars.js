@@ -7,6 +7,8 @@ function getCars() {
   return { cars: CarStore.getAllCars().toJS() };
 }
 
+function setCarsInStore() {}
+
 class cars extends React.Component {
   constructor() {
     super();
@@ -16,7 +18,7 @@ class cars extends React.Component {
    * fetch cars from server
    */
   componentDidMount() {
-    //axios call
+    setCarsInStore();
   }
 
   render() {
