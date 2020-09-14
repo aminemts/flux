@@ -1,0 +1,27 @@
+{
+  "1": {
+    "model": "mercedes",
+    "reference": "class c",
+    "color": "blue"
+  },
+  "2": {
+    "model": "bmw",
+    "reference": "serie 1",
+    "color": "black"
+  },
+  "3": {
+    "model": "audi",
+    "reference": "a5",
+    "color": "green"
+  },
+  "4": {
+    "model": "peugeot",
+    "reference": "208",
+    "color": "white"
+  },
+  "5": {
+    "model": "renaut",
+    "reference": "civic",
+    "color": "red"
+  }
+}
