@@ -105,6 +105,10 @@ class CarStore extends baseStore {
     );
     this.emitChange();
   }
+
+  deleteCarsFromCompareList() {
+    this.emitChange();
+  }
 }
 
 /**
@@ -140,6 +144,10 @@ const storeActions = (store) => {
 
       case ActionTypes.DELETE_CAR_FROM_COMPARE_LIST:
         store.deleteCarFromCompareList(action.data);
+        break;
+
+      case ActionTypes.DELETE_CARS_FROM_COMPARE_LIST:
+        store.deleteCarsFromCompareList(action.data);
         break;
 
       default:

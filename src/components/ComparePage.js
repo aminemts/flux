@@ -1,5 +1,12 @@
 import React, { Component } from "react";
 import CarStore from "../stores/CarStore";
+import { deleteCarsFromCompareList } from "../actions/CarActions";
+
+import { Link } from "react-router-dom";
+
+const handleDeleteAll = () => {
+  deleteCarsFromCompareList();
+};
 
 export default class ComparePage extends Component {
   state = {
@@ -24,6 +31,14 @@ export default class ComparePage extends Component {
               </li>
             ))}
           </ul>
+          <Link to="/">
+            <button
+              className="btn btn-warning btn-block"
+              onClick={this.handleDeleteAll}
+            >
+              faire nouvelle comparaison
+            </button>
+          </Link>
         </div>
       </div>
     );
