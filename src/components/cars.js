@@ -4,7 +4,7 @@ import CarItem from "../components/caritem";
 import CarStore from "../stores/CarStore";
 
 function getCars() {
-  return { cars: CarStore.getAllCars() };
+  return { cars: CarStore.getAllCars().toJS() };
 }
 
 class cars extends React.Component {

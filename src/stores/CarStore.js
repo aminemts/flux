@@ -19,7 +19,8 @@ class CarStore extends baseStore {
   // eslint-disable-next-line no-useless-constructor
   constructor() {
     super();
-    this.listCarsToCompare = [];
+    this.cars = new List(_cars);
+    this.listCarsToCompare = new List();
   }
 
   /**
@@ -36,7 +37,7 @@ class CarStore extends baseStore {
   }
 
   getAllCars() {
-    return _cars;
+    return this.cars;
   }
 
   /**
@@ -65,7 +66,7 @@ class CarStore extends baseStore {
    * et on notifie le composant React abonné aux changements
    */
   createCar(car) {
-    _cars.push(car);
+    this.cars = this.cars.push(car);
     this.emitChange();
   }
   /**
@@ -87,12 +88,14 @@ class CarStore extends baseStore {
    * composant React abonné aux changements
    */
   deleteCar(id) {
-    _cars.splice(id, 1);
+    this.cars = this.cars.splice(id, 1);
     this.emitChange();
   }
 
   addCarToCompareList(car) {
-    this.listCarsToCompare.push(car);
+    if (this.listCarsToCompare.map((car) => car.id).includes(car.id)) return;
+    this.listCarsToCompare = this.listCarsToCompare.push(car);
+    console.log("add car", { listCarsToCompare: this.listCarsToCompare });
     this.emitChange();
   }
 
@@ -104,8 +107,6 @@ class CarStore extends baseStore {
   }
 }
 
-const carStore = new CarStore();
-
 /**
  * on analyse le type de l'action dispatch dans l'application
  * si le store est concerné dans son switch il traite cette action
@@ -115,7 +116,8 @@ const carStore = new CarStore();
 
 const storeActions = (store) => {
   return (action) => {
-    switch (action.type) {
+    console.log("from reducer", { action });
+    switch (action.actionType) {
       case ActionTypes.INIT_CARS:
         store.setCarsInStore(action.data);
         break;
@@ -133,11 +135,11 @@ const storeActions = (store) => {
         break;
 
       case ActionTypes.ADD_CAR_TO_COMPARE_LIST:
-        store.addCarToCompareList();
+        store.addCarToCompareList(action.data);
         break;
 
       case ActionTypes.DELETE_CAR_FROM_COMPARE_LIST:
-        store.deleteCarFromCompareList();
+        store.deleteCarFromCompareList(action.data);
         break;
 
       default:
@@ -146,7 +148,8 @@ const storeActions = (store) => {
   };
 };
 
-const CarStoreInstance = new CarStore();
-CarStoreInstance.dispatchToken = AppDispatcher.register(storeActions);
+const carStore = new CarStore();
 
-export default CarStoreInstance;
+carStore.dispatchToken = AppDispatcher.register(storeActions(carStore));
+
+export default carStore;

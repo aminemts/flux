@@ -1,6 +1,8 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import ComparePage from "./components/ComparePage";
 
 import CarActions from "./actions/CarActions.js";
 
@@ -9,19 +11,28 @@ import ListCarsToCompare from "./components/ListCarsToCompare";
 
 import "./App.css";
 
+const HomePage = () => (
+  <div className="row">
+    <div className="col-md-6">
+      <Cars />
+    </div>
+
+    <div className="col-md-6">
+      <ListCarsToCompare></ListCarsToCompare>
+    </div>
+  </div>
+);
+
 function App() {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-6">
-          <Cars />
-        </div>
-
-        <div className="col-md-6">
-          <ListCarsToCompare></ListCarsToCompare>
-        </div>
+    <BrowserRouter>
+      <div className="container">
+        <Switch>
+          <Route path="/compare" exact component={ComparePage}></Route>
+          <Route path="/" component={HomePage}></Route>
+        </Switch>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 

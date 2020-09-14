@@ -4,6 +4,7 @@ const CHANGE_EVENT = "change";
 
 class Store extends EventEmitter {
   emitChange() {
+    console.log("emit change");
     this.emit(CHANGE_EVENT);
   }
 

@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import { deleteCarFromCompareList } from "../actions/CarActions";
 import CarStore from "../stores/CarStore";
+import { Link } from "react-router-dom";
 
 const handleDelete = (carId) => deleteCarFromCompareList(carId);
 
 class ListCarsToCompare extends Component {
   state = {
-    listCarsToCompare: CarStore.getListCarsToCompare(),
+    listCarsToCompare: CarStore.getListCarsToCompare().toJS(),
   };
 
   onChange = () => {
-    this.setState({ listCarsToCompare: CarStore.getListCarsToCompare() });
+    console.log("from onChange");
+    this.setState({
+      listCarsToCompare: CarStore.getListCarsToCompare().toJS(),
+    });
   };
 
   componentDidMount() {
@@ -36,7 +40,7 @@ class ListCarsToCompare extends Component {
           </ul>
         </div>
 
-        <button className="btn btn-warning">Comparer</button>
+        <Link to="/compare">Comparer</Link>
       </div>
     );
   }
