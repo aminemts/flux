@@ -107,6 +107,8 @@ class CarStore extends baseStore {
   }
 
   deleteCarsFromCompareList() {
+    console.log("executed");
+    this.listCarsToCompare = new List();
     this.emitChange();
   }
 }
@@ -147,7 +149,7 @@ const storeActions = (store) => {
         break;
 
       case ActionTypes.DELETE_CARS_FROM_COMPARE_LIST:
-        store.deleteCarsFromCompareList(action.data);
+        store.deleteCarsFromCompareList();
         break;
 
       default:

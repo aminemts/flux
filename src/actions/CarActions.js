@@ -21,10 +21,9 @@ export const deleteCarFromCompareList = (carId) => {
   });
 };
 
-export const deleteCarsFromCompareList = (cars) => {
+export const deleteCarsFromCompareList = () => {
   dispatch({
     actionType: AppConstants.DELETE_CARS_FROM_COMPARE_LIST,
-    data: cars,
   });
 };
 

@@ -13,6 +13,21 @@ export default class ComparePage extends Component {
     listCarsToCompare: CarStore.getListCarsToCompare(),
   };
 
+  onChange = () => {
+    console.log("from onChange");
+    this.setState({
+      listCarsToCompare: CarStore.getListCarsToCompare().toJS(),
+    });
+  };
+
+  componentDidMount() {
+    CarStore.addChangeListener(this.onChange);
+  }
+
+  componentWillUnmount() {
+    CarStore.removeChangeListener(this.onChange);
+  }
+
   render() {
     return (
       <div>

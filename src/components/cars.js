@@ -12,6 +12,13 @@ class cars extends React.Component {
     super();
     this.state = getCars();
   }
+  /**
+   * fetch cars from server
+   */
+  componentDidMount() {
+    //axios call
+  }
+
   render() {
     let cars = this.state.cars.map((car) => {
       return <CarItem key={car.id} car={car}></CarItem>;
