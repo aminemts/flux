@@ -15,6 +15,12 @@ export default class ComparePage extends Component {
               <li key={car.id}>
                 <h1>{car.marque}</h1>
                 <p>{car.description}</p>
+                <img
+                  alt=""
+                  src="https://loremflickr.com/g/320/240/bmw"
+                  width="100%"
+                  className="img-responsive"
+                />
               </li>
             ))}
           </ul>
