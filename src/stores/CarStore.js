@@ -2,15 +2,16 @@ import { Map, List } from "immutable";
 import baseStore from "../core/baseStore";
 import AppDispatcher from "../dispatchers/AppDispatcher";
 import ActionTypes from "../constants/CarsConstants";
+
 // const CHANGE_EVENT = "change";
-let _cars = [];
-for (let i = 1; i < 10; i++) {
-  _cars.push({
-    id: i,
-    marque: "Car #" + i,
-    description: "a great car to drive",
-  });
-}
+// let _cars = [];
+// for (let i = 1; i < 10; i++) {
+//   _cars.push({
+//     id: i,
+//     marque: "Car #" + i,
+//     description: "a great car to drive",
+//   });
+// }
 class CarStore extends baseStore {
   // eslint-disable-next-line no-useless-constructor
   constructor() {
@@ -18,6 +19,17 @@ class CarStore extends baseStore {
     this.cars = new List();
     this.listCarsToCompare = new List();
   }
+
+  /**
+   * ajoute les produits passés en argument au store
+   * processus d'initialisation
+   */
+  setCarsInStore(cars) {
+    console.log("store", { cars });
+    this.cars = new List(cars);
+    this.emitChange();
+  }
+
   /**
    * initialiser les produits qu'on va sauvegarder dans le store sous forme de map (immutable)
    * ou chaque produit sera indexé par une clé unique (id du produit)
@@ -59,15 +71,7 @@ class CarStore extends baseStore {
     this.cars = this.cars.push(car);
     this.emitChange();
   }
-  /**
-   * ajoute les produits passés en argument au store
-   * processus d'initialisation
-   */
-  setCarsInStore(cars) {
-    console.log("store", { cars });
-    this.cars = new List(cars);
-    this.emitChange();
-  }
+
   /**
    * on supprime un produit et on notifie le
    * composant React abonné aux changements

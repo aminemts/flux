@@ -39,7 +39,7 @@ export const addCarToCompareList = (car) => {
   });
 };
 export const initCars = async () => {
-  //get data from axios
+  //get data using axios
   const result = await axiosInstance
     .get("/")
     .catch((error) => console.log("dsd"));
