@@ -49,7 +49,7 @@ class ComparePage extends Component {
           <Link to="/">
             <button
               className="btn btn-warning btn-block"
-              onClick={handleDeleteAll}
+              onClick={this.handleDeleteAll}
             >
               faire nouvelle comparaison
             </button>

@@ -44,6 +44,9 @@ export const initCars = async () => {
     .get("/")
     .catch((error) => console.log("dsd"));
   console.log({ result });
+
+  //tableau d'entité car
+
   dispatch({
     actionType: AppConstants.INIT_CARS,
     data: result.data,

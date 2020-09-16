@@ -2,16 +2,7 @@ import { Map, List } from "immutable";
 import baseStore from "../core/baseStore";
 import AppDispatcher from "../dispatchers/AppDispatcher";
 import ActionTypes from "../constants/CarsConstants";
-
-// const CHANGE_EVENT = "change";
-// let _cars = [];
-// for (let i = 1; i < 10; i++) {
-//   _cars.push({
-//     id: i,
-//     marque: "Car #" + i,
-//     description: "a great car to drive",
-//   });
-// }
+import immCar from "../entities/Car";
 class CarStore extends baseStore {
   // eslint-disable-next-line no-useless-constructor
   constructor() {
@@ -26,7 +17,9 @@ class CarStore extends baseStore {
    */
   setCarsInStore(cars) {
     console.log("store", { cars });
-    this.cars = new List(cars);
+    // this.cars = new List(cars);
+    console.log(new immCar(cars));
+    this.cars = new immCar(cars);
     this.emitChange();
   }
 
