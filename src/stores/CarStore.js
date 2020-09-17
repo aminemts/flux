@@ -18,8 +18,9 @@ class CarStore extends baseStore {
   setCarsInStore(cars) {
     console.log("store", { cars });
     // this.cars = new List(cars);
-    console.log(new immCar(cars));
-    this.cars = new immCar(cars);
+    // console.log(new immCar(cars));
+    // this.cars = new immCar(cars);
+    this.cars = new List(cars.map((car) => new immCar(car)));
     this.emitChange();
   }
 
